@@ -33,7 +33,7 @@ module.exports.routes = {
     ***************************************************************************/
 
     '/': {
-    view: 'homepage'
+        view: 'homepage'
     },
 
     /***************************************************************************
@@ -51,6 +51,6 @@ module.exports.routes = {
     'GET /posts/:id': 'PostsController.getPost', 
     'GET /posts/:id/getThread': 'PostsController.getThread',
     'POST /posts/:id/push': 'PostsController.push',
-    'POST/posts/:id/branch': 'PostsController.branch'
+    'POST /posts/:id/branch': 'PostsController.branch'
 
 };
