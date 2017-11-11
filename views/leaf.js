@@ -29,12 +29,21 @@ function validateRegister(formObj) {
     alert("You did not match your passwords");
     return false;
   }
+  if(formObj.username.value == formObj.password.value){
+    alert("You must choose a better password.");
+    return false;
+  }
   alert("You have submitted a valid form.");  
   return false;
 }
+
 function validateLogin(formObj) {
   if(formObj.username.value == ""){
-    alert("You did not enter a username");
+    alert("You must enter a username.");
+    return false;
+  }
+  if(formObj.password.value == ""){
+    alert("You must enter a password.");
     return false;
   }
   alert("You have submitted a valid form.");  
