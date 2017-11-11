@@ -29,10 +29,11 @@ header {
 footer {
 }
 .registration {
+    text-align: justify;
     font-size: 20px;
 }
 .registration textarea {
-    float: right;
+    float:left;
     margin-right: 2px;
 }
 
