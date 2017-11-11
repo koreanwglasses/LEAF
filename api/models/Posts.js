@@ -56,10 +56,19 @@ module.exports = {
     //      However, if there is a branch downstream, the model will return an
     //      error, which should be handled by the controller
     //  options.post: json with data about the new post (see attributes)
-    //
-    //  User info is in sessions
+    //  options.user: id of current user
     push: function(options, cb) {
+        Links.getLowest({id: options.id}, function(err, lowest) {
+            if(err) cb(err);
 
+            if(lowest.isLeaf == false) return cb(new Error('Cannot push post to this thread: ambiguous branch'));
+
+            var opts = {};
+            Object.assign(opts, options);
+            opts.id = lowest.id;
+
+            Posts.branch(opts, cb); 
+        });
     }
 };
 

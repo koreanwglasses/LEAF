@@ -54,7 +54,19 @@ module.exports = {
     //  User authentication (will be) handled here
     //  User info is handled here with sessions
     push: function(req, res) {
+        var options = {
+            id: req.param('id'),
+            post: req.param('post')
+        };
 
+        Posts.push(options, function(err, newPost) {
+            if(err) {
+                // better error negotiation later
+                res.negotiate(err);
+            } else {
+                res.json(newPost);
+            }
+        });
     }
 };
 
