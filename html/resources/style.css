@@ -2,7 +2,8 @@ html {
     font-family: "Calibri";
 	margin: 0;
 	padding: 0;
-    background: #b5eabb;
+    background: linear-gradient(#93FF7A, white) no-repeat;
+    background-attachment: fixed;
 }
 h1 {
     background: url("/resources/leaf.png") no-repeat top left;
