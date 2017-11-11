@@ -1,13 +1,19 @@
 html {
     font-family: "Calibri";
+<<<<<<< HEAD:html/resources/style.css
 	  margin: 0;
 	  padding: 0;
     background: linear-gradient(#AAFF8F, white) no-repeat;
+=======
+	margin: 0;
+	padding: 0;
+    background: linear-gradient(#93FF7A, white) no-repeat;
+>>>>>>> qsux:views/resources/style.css
     background-attachment: fixed;
 }
 h1 {
     background: url("/resources/leaf.png") no-repeat top left;
-    background-size: 40px, 40px;
+    background-size: 39px, 40px;
     font-family: "Times New Roman";
     font-variant: small-caps;
     margin-left: 50px;
