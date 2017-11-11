@@ -1,5 +1,5 @@
 html{
-  width:400px;
+  width:450px;
 }
 
 p{
@@ -10,12 +10,22 @@ h5{
   margin:0;
 }
 
+#chatbox{
+  padding-top:20px;
+  padding-left:10px;
+  padding-bottom:20px;
+  border-style:solid;
+  border-width:1px;
+}
+
 #user{
 
   text-align: right;
   width:400px;
 }
 #user p{
+  padding-right:1px;
+  padding-left:1px;
   background:lightblue;
   border-radius: 5px;
 }
@@ -26,6 +36,8 @@ h5{
 
 }
 #other p{
+  padding-right:1px;
+  padding-left:1px;
   background:lightgreen;
   border-radius: 5px;
 }
