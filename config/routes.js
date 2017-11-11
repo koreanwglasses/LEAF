@@ -33,7 +33,7 @@ module.exports.routes = {
     ***************************************************************************/
 
     '/': {
-    view: 'homepage'
+        view: 'homepage'
     },
 
     /***************************************************************************
@@ -47,10 +47,10 @@ module.exports.routes = {
     ***************************************************************************/
 
 
-    // Routes for Posts
-    'GET /posts/:id': 'PostsController.getPost', 
-    'GET /posts/:id/getThread': 'PostsController.getThread',
-    'POST /posts/:id/push': 'PostsController.push',
-    'POST /posts/:id/branch': 'PostsController.branch'
+    // Routes for Posts (using default routes for testing)
+    // 'GET /posts/:id': 'PostsController.getPost', 
+    // 'GET /posts/:id/thread': 'PostsController.getThread',
+    // 'POST /posts/:id/push': 'PostsController.push',
+    // 'POST /posts/:id/branch': 'PostsController.branch'
 
 };
