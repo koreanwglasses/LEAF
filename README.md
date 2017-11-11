@@ -1,2 +1,3 @@
 # LEAF
-Fractal Chats
+
+a [Sails](http://sailsjs.org) application
