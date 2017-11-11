@@ -18,15 +18,22 @@
         </div>
       </header>
       <h2>
-          <form id="register" name="register" action="#" method="post" onsubmit="return validateLogin(this);">
+          <form id="register" name="register" action="#" method="post" onsubmit="return validateRegister(this);">
             <fieldset>
-            <legend>Login</legend>
-            <div class="login">
+            <legend>Register</legend>
+            <div class="registration">
+                <textarea rows="1" cols="29" name="firstName" id="firstName" placeholder="First Name"></textarea>
+                <textarea rows="1" cols="28" name="lastName" id="lastName" placeholder="Last Name"></textarea>
+                <br/>
+                <textarea rows="1" cols="60" name="email" id="email" placeholder="Email"></textarea>
+                <br/>
                 <textarea rows="1" cols="60" name="username" id="username" placeholder="Username"></textarea>
                 <br/>
                 <textarea rows="1" cols="60" name="password" id="password" placeholder="Password"></textarea>
                 <br/>
-                <input type="submit" value="Submit" id="loginSubmit" name="loginSubmit"/>
+                <textarea rows="1" cols="60" name="confirmpassword" id="confirmpassword" placeholder="Re-type Password"></textarea>
+                <br/>
+                <input type="submit" value="Submit" id="registerSubmit" name="registerSubmit"/>
               </div>
               </fieldset>
           </form>

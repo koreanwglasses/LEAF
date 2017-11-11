@@ -4,7 +4,7 @@ $(document).ready(function() {
   });
 });
 
-function validate(formObj) {
+function validateRegister(formObj) {
   if(formObj.firstName.value == "") {
     alert("You must enter a first name.");
     return false;
@@ -23,6 +23,18 @@ function validate(formObj) {
   }
   if(formObj.password.value.length < 6) {
     alert("Password must be greater then 6 characters.");
+    return false;
+  }
+  if(formObj.password.value != formObj.confirmpassword.value){
+    alert("You did not match your passwords");
+    return false;
+  }
+  alert("You have submitted a valid form.");  
+  return false;
+}
+function validateLogin(formObj) {
+  if(formObj.username.value == ""){
+    alert("You did not enter a username");
     return false;
   }
   alert("You have submitted a valid form.");  
