@@ -6,7 +6,7 @@ html {
     background-attachment: fixed;
 }
 h1 {
-    background: url("/resources/leaf.png") no-repeat top left;
+    background: url("/images/leaf.png") no-repeat top left;
     background-size: 39px, 40px;
     font-family: "Times New Roman";
     font-variant: small-caps;
