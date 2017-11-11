@@ -9,12 +9,6 @@ h1 {
     font-variant: small-caps;
     margin-left: 50px;
 }
-p{
-  margin:0;
-}
-h5{
-  margin:0;
-}
 header {
     list-style: none;
     text-align: justify;
@@ -42,9 +36,7 @@ footer {
     margin-right: 2px;
 }
 
-
 /*chatbox formattign below*/
-
 p{
   margin:0;
 }
@@ -54,11 +46,13 @@ h5{
 }
 
 #chatbox{
+  background: grey;
   width:450px;
   padding-top:20px;
   padding-left:20px;
   padding-bottom:20px;
   border-style:solid;
+  border-radius: 1em;
   border-width:1px;
 }
 
@@ -69,7 +63,7 @@ h5{
 #user p{
   padding-right:1px;
   padding-left:1px;
-  background:lightblue;
+  background: lightblue;
   border-radius: 5px;
 }
 
