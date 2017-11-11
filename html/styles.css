@@ -1,0 +1,31 @@
+html{
+  width:400px;
+}
+
+p{
+  margin:0;
+}
+
+h5{
+  margin:0;
+}
+
+#user{
+
+  text-align: right;
+  width:400px;
+}
+#user p{
+  background:lightblue;
+  border-radius: 5px;
+}
+
+#other {
+  text-align: left;
+  width:400px;
+
+}
+#other p{
+  background:lightgreen;
+  border-radius: 5px;
+}
