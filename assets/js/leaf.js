@@ -1,9 +1,22 @@
+
+
+// $.ajax({
+//    url: 'http://localhost:1337/users/login',
+//    data: {
+//       username: "ethan", password: "graf"
+//    }
+// });
+
+//adding in more messages to the current convo
 $(document).ready(function() {
   $("#sendButton").click(function() {
     $("#output").html($("#message").val());
   });
 });
 
+
+
+//form validation
 function validateRegister(formObj) {
   if(formObj.firstName.value == "") {
     alert("You must enter a first name.");

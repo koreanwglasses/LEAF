@@ -30,10 +30,21 @@
 
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/style.css">
     <!--STYLES END-->
   </head>
 
   <body>
+      <h1>Leaf</h1>
+      <header>
+        <div class = "navBar">
+            <div> <a href="/" class = "navBar" id = "homeBar">Home</a></div>
+            <div> <a href="/" class = "navBar" id = "trendBar">Trending</a></div>
+            <div> <a href="/register" class = "navBar" id = "registerBar">Register</a></div>
+            <div> <a href="/login" class = "navBar" id = "loginBar">Log in</a></div>
+            <div> <a href="/" class = "navBar" id = "helpBar">Help</a></div>
+        </div>
+      </header>
     <%- body %>
 
 
@@ -89,6 +100,8 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/leaf.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
