@@ -8,7 +8,12 @@
 module.exports = {
 
     attributes: {
-
+        // id is created automatically and stored as primaryKey 
+        username: {
+            type: 'text',
+            unique: true,
+        },
+        password: { type: 'string' }
     }
 };
 
