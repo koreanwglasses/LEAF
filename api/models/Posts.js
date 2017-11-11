@@ -69,6 +69,11 @@ module.exports = {
 
             Posts.branch(opts, cb); 
         });
+    },
+
+    // forwards call to links. See Links.getChain for function details
+    getChain: function(options, cb) {
+        Links.getChain(options, cb);
     }
 };
 
