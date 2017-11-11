@@ -7,6 +7,12 @@
 
 module.exports = {
 
+    getPost: function(req, res) {
+    },
+
+    getThread: function(req, res) {
+    },
+
     //  no need for GET, since everything is dynamically updated with AJAX 
     //  anyway, and CRUD is implemented by default.
 
