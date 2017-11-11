@@ -4,6 +4,8 @@
     <title>Leaf</title>
     
     <link type="text/css" rel="stylesheet" href = "resources/style.css">
+    <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="leaf.js"></script>
   </head>
 
   <body>
@@ -17,7 +19,7 @@
         </div>
       </header>
       <h2>
-            <div id="user">
+  <div id="user">
     <h5>John</h5>
     <p>Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you?Hey how are you? </p>
   </div>
@@ -32,10 +34,12 @@
     <h5>Ethan</h5>
     <p>I'm not doing so great</p>
   </div>
-
+  <div id="output">
+    Example
+  </div>
   <div class="value"><textarea rows="4" cols="50" name="message" id="message" onclick="if(this.value=='Message') this.value='';">Message</textarea></div>
 
-  <button type="button" onclick="">Send</button>
+  <input type="submit" value = "Send" id = "sendButton" name = "sendButton">
       </h2>
       <footer>Copyright</footer>
   </body>
