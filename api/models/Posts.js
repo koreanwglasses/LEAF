@@ -7,11 +7,6 @@
 
 module.exports = {
 
-<<<<<<< HEAD
-  attributes: {
-
-  }
-=======
     attributes: {
         content: { type: 'text' },
     },
@@ -23,6 +18,5 @@ module.exports = {
     push: function(options, cb) {
 
     }
->>>>>>> ce21e624970eabd6a6852cb84c88d8d8c9259f80
 };
 

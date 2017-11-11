@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+
     //  no need for GET, since everything is dynamically updated with AJAX 
     //  anyway, and CRUD is implemented by default.
 
@@ -17,6 +18,7 @@ module.exports = {
     //  User authentication (will be) handled here
     //  User info is handled here with sessions
     branch: function(req, res) {
+        return res.send('Hola!');
 
     },
 
