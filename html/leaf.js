@@ -5,7 +5,7 @@ $(document).ready(function() {
 });
 
 function validate(formObj) {
-  if(formObj.password.length < 6) {
+  if(formObj.password.value.length < 6) {
     alert("Password must be greater then 6 characters");
     return false;
   }
