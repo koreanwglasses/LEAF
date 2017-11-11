@@ -31,11 +31,12 @@ module.exports = {
             post: req.param('post')
         };
 
-        Posts.branch(options, function(err, post) {
+        Posts.branch(options, function(err, newPost) {
             if(err) {
-                // negotiate errors here
+                // better error negotiation later
+                res.negotiate(err);
             } else {
-                res.json(options.post);
+                res.json(newPost);
             }
         });
     },
