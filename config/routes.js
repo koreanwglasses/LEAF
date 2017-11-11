@@ -33,16 +33,16 @@ module.exports.routes = {
     ***************************************************************************/
 
     '/': {
-        view: 'homepage'
+        view: 'index'
     },
     '/register':{
-        views: 'register'
+        view: 'register'
     },
     '/login': {
-        views: 'login'
+        view: 'login'
     },
     '/post':{
-        views: 'post'
+        view: 'post'
     }
 
     /***************************************************************************
