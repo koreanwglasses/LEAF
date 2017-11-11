@@ -7,6 +7,7 @@
     <script type="text/javascript" src="resources/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="leaf.js"></script>
   </head>
+
   <body>
       <h1>Leaf</h1>
       <header>
@@ -37,9 +38,10 @@
   <div id="output">
     Example
   </div>
-  <div class="value"><textarea rows="4" cols="50" name="message" id="message" onclick="if(this.placeholder=='Message') this.placeholder='';" placeholder = "Message"></textarea></div>
+  <div class="value"><textarea rows="4" cols="50" name="message" id="message" onclick="if(this.value=='Message') this.value='';">Message</textarea></div>
 
   <input type="submit" value = "Send" id = "sendButton" name = "sendButton">
+
   </div>
       </h2>
       <footer>Copyright</footer>
