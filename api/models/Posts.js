@@ -12,17 +12,39 @@ module.exports = {
         //  https://sailsjs.com/documentation/concepts/models-and-orm/attributes
 
         content: { type: 'text' },
-        source: { type: 'integer' } // id of user
+        parent: { type: 'integer'}, // id of parent
+        source: { type: 'integer' }, // id of user
+
     },
 
     //  Create a new branch off a post
     //
     //  options.id: id of post to branch off of
     //  options.post: json with data about the new post (see attributes)
-    //
-    //  User info is in sessions
+    //  options.user: id of user
     branch: function(options, cb) {
+        Posts.find({id: options.id}).exec(function(err, records) {
+            if(err) return cb(err);
 
+            if(records.length == 0) return cb(new Error('Post does not exist'));
+
+            var post = {
+                parent: options.id,
+                source: options.user
+            };
+
+            Object.assign(post, options.post);
+
+            Posts.create(post).exec(function(err, newPost) {
+                if(err) return cb(err);
+
+                Links.create({id: options.id, child: newPost.id}).exec(function(err) { 
+                    if(err) return cb(err);
+
+                    return cb(null, newPost);
+                });
+            });
+        });
     },
 
     //  Create a new post at the end of branch
