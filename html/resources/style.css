@@ -1,0 +1,63 @@
+html {
+    font-family: "Calibri";
+	margin: 0;
+	padding: 0;
+    background: #b5eabb;
+	}
+h1 {
+    font-family: "Times New Roman";
+    font-variant: small-caps;
+    margin-left: 50px;
+}
+p{
+  margin:0;
+}
+h5{
+  margin:0;
+}
+header {
+    list-style: none;
+    text-align: justify;
+}
+.navBar {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    font-variant: small-caps;
+    font-size: 20px;
+    text-align: justify;
+    justify-content: space-between;
+}
+.navBar:link {
+    text-decoration: none;
+}
+footer {
+
+}
+.registration {
+    font-size: 20px;
+}
+.registration textarea {
+    float: right;
+    margin-right: 2px;
+}
+#user{
+
+  text-align: right;
+  width:400px;
+}
+#user p{
+  background:lightblue;
+  border-radius: 5px;
+}
+
+#other {
+  text-align: left;
+  width:400px;
+
+}
+#other p{
+  background:lightgreen;
+  border-radius: 5px;
+}
