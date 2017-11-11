@@ -3,8 +3,10 @@ html {
 	margin: 0;
 	padding: 0;
     background: #b5eabb;
-	}
+}
 h1 {
+    background: url("/resources/leaf.png") no-repeat top left;
+    background-size: 40px, 40px;
     font-family: "Times New Roman";
     font-variant: small-caps;
     margin-left: 50px;
@@ -36,7 +38,7 @@ footer {
     margin-right: 2px;
 }
 
-/*chatbox formattign below*/
+/*chatbox formatting below*/
 p{
   margin:0;
 }
