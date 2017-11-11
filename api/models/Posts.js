@@ -11,11 +11,11 @@ module.exports = {
         content: { type: 'text' },
     },
 
-    getParent: function(options, cb) {
+    branch: function(options, cb) {
 
     },
 
-    getChildren: function(options, cb) {
+    push: function(options, cb) {
 
     }
 };
