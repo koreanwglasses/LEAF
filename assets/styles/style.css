@@ -1,0 +1,84 @@
+html {
+    font-family: "Calibri";
+	margin: 0;
+	padding: 0;
+    background: linear-gradient(#aeff9b, white) no-repeat;
+    background-attachment: fixed;
+}
+h1 {
+    background: url("/resources/leaf.png") no-repeat top left;
+    background-size: 39px, 40px;
+    font-family: "Times New Roman";
+    font-variant: small-caps;
+    margin-left: 50px;
+}
+header {
+    list-style: none;
+    text-align: justify;
+}
+.navBar {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    font-variant: small-caps;
+    font-size: 20px;
+    text-align: justify;
+    justify-content: space-between;
+}
+.navBar:link {
+    text-decoration: none;
+}
+footer {
+}
+.registration {
+    text-align: justify;
+    font-size: 20px;
+}
+.registration textarea {
+    float:left;
+    margin-right: 2px;
+}
+
+/*chatbox formatting below*/
+p{
+  margin:0;
+}
+
+h5{
+  margin:0;
+}
+
+#chatbox{
+  background: grey;
+  width:450px;
+  padding-top:20px;
+  padding-left:20px;
+  padding-bottom:20px;
+  border-style:solid;
+  border-radius: 1em;
+  border-width:1px;
+}
+
+#user{
+  text-align: right;
+  width:400px;
+}
+#user p{
+  padding-right:1px;
+  padding-left:1px;
+  background: lightblue;
+  border-radius: 5px;
+}
+
+#other {
+  text-align: left;
+  width:400px;
+
+}
+#other p{
+  padding-right:1px;
+  padding-left:1px;
+  background:lightgreen;
+  border-radius: 5px;
+}
