@@ -17,16 +17,23 @@
         </div>
       </header>
       <h2>
-        <div class="registration">
-            <textarea rows="1" cols="29" name="firstName" id="firstName" placeholder="First Name"></textarea>
-            <textarea rows="1" cols="28" name="lastName" id="lastName" placeholder="Last Name"></textarea>
-            <br/>
-            <textarea rows="1" cols="60" name="email" id="email" placeholder="Email"></textarea>
-            <br/>
-            <textarea rows="1" cols="60" name="username" id="username" placeholder="Username"></textarea>
-            <br/>
-            <textarea rows="1" cols="60" name="password" id="password" placeholder="Password"></textarea>
-          </div>
+          <form id="register" name="register" action="#" method="post" onsubmit="return validate(this);">
+            <fieldset>
+            <legend>Register</legend>
+            <div class="registration">
+                <textarea rows="1" cols="29" name="firstName" id="firstName" placeholder="First Name"></textarea>
+                <textarea rows="1" cols="28" name="lastName" id="lastName" placeholder="Last Name"></textarea>
+                <br/>
+                <textarea rows="1" cols="60" name="email" id="email" placeholder="Email"></textarea>
+                <br/>
+                <textarea rows="1" cols="60" name="username" id="username" placeholder="Username"></textarea>
+                <br/>
+                <textarea rows="1" cols="60" name="password" id="password" placeholder="Password"></textarea>
+                <br/>
+                <input type="submit" value="Submit" id="loginSubmit" name="loginSubmit"/>
+              </div>
+              </fieldset>
+          </form>
       </h2>
 <!--      <footer>Copyright</footer>-->
   </body>
