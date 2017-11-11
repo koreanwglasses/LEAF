@@ -8,9 +8,17 @@
 module.exports = {
 
     getPost: function(req, res) {
+        Posts.find({id: req.param('id')}, function(err, result) {
+            if(err) return res.negiotiate(err);
+            return res.json(result);
+        });
     },
 
-    getThread: function(req, res) {
+    getChain: function(req, res) {
+        Posts.getChain({id: req.param('id')}, function(err, result) {
+            if(err) return res.negiotiate(err);
+            return res.json(result);
+        });
     },
 
     //  no need for GET, since everything is dynamically updated with AJAX 
