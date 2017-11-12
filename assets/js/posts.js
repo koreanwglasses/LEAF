@@ -12,3 +12,18 @@ function getPost(div, id){
     div.append(result.content)
   });
 }
+
+function getChain(div, id){
+  $.ajax({
+    url: '/posts/getChain',
+    type: "POST",
+    data: {
+      id: id
+    },
+    dataType: "application/json"
+  })
+  .done(function(result) {
+    
+    result.ids
+  });
+}
