@@ -58,17 +58,26 @@ module.exports = {
     //  options.post: json with data about the new post (see attributes)
     //  options.user: id of current user
     push: function(options, cb) {
-        Links.getLowest({id: options.id}, function(err, lowest) {
-            if(err) cb(err);
+        if(options.id === undefined || options.id <= 0) { // new tree
+            var post = options.post;
+            post.parent = -1;
+            Posts.create(post).exec(function(err, newPost) {
+                if(err) return cb(err);
+                return newPost;
+            });
+        } else {
+            Links.getLowest({id: options.id}, function(err, lowest) {
+                if(err) cb(err);
 
-            if(lowest.isLeaf == false) return cb(new Error('Cannot push post to this thread: ambiguous branch'));
+                if(lowest.isLeaf == false) return cb(new Error('Cannot push post to this thread: ambiguous branch'));
 
-            var opts = {};
-            Object.assign(opts, options);
-            opts.id = lowest.id;
+                var opts = {};
+                Object.assign(opts, options);
+                opts.id = lowest.id;
 
-            Posts.branch(opts, cb); 
-        });
+                Posts.branch(opts, cb); 
+            });
+        }
     },
 
     // forwards call to links. See Links.getChain for function details
