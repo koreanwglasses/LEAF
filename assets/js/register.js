@@ -8,7 +8,7 @@ function register(){
       username: $("#username").val(),
       password: $("#password").val()
       },
-    dataType: 'applications/json'
+    dataType: 'json'
     }
   });
 
