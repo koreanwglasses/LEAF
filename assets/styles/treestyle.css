@@ -8,12 +8,27 @@
     z-index: -100;
 }
 
+#tree-wrapper h2 {
+    text-align: center;
+}
+
 #tree-container {
     text-align: center;
 
     margin: 0 auto;
 
     position: relative;
+}
+
+#history .node {
+    /* display: block;     */
+    background-color: lightgrey;
+
+    width: 100px;
+    height: 20px;
+
+    border-style: solid;
+    margin: 5px auto;
 }
 
 #tree-container .node {

@@ -83,6 +83,28 @@ module.exports = {
     // forwards call to links. See Links.getChain for function details
     getChain: function(options, cb) {
         Links.getChain(options, cb);
+    },
+
+    //  Returns the history of from this node
+    //  Current post is last element of result.ids
+    // 
+    // options.id: id of starting point
+    // options.maxPosts: maximum posts to send back (unimplemented)
+    //
+    // result.ids: ids
+    // result.maxReached: is true if maxPosts was reached (unimplemented)
+    getHistory: function(options, cb) {
+        Posts.findOne({id: options.id}, function(err, post) {
+            if(err) return cb(err);
+            
+            if(post.parent == -1) return cb(null, {ids: [post.id]});
+
+            Posts.getHistory({id: post.parent}, function(err, result) {
+                var chain = result.ids;
+                chain.push(post.id);
+                return cb(err, {ids: chain});
+            });
+        });
     }
 };
 

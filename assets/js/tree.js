@@ -47,11 +47,12 @@ var treejs = (function () {
         return n;
     };
 
-    var node = function(container, post) {
+    var node = function(container, post, outside) {
         this.isNode = true;
         var _self = this;
 
-        nodes[post.id] = this;
+        if(!outside)
+            nodes[post.id] = this;
 
         this.container = container;
 
@@ -67,7 +68,9 @@ var treejs = (function () {
             push_branch(post.id, 'New Branch', function(err, result) {
                 if(err) return console.error(err);
 
-                _self.add_as_branch(result);
+                // _self.add_as_branch(result);
+                reset();
+                first_node(rootId);
             });
         });
         this.branch_ui.hide();
@@ -159,14 +162,38 @@ var treejs = (function () {
     // build tree
     var rootId = 100;
     var rootNode = null;
+    var history_div = null;
     var founder = false;
 
     var first_node = function(id) {
         get_post(id, function(err, result) {
             if(err) return console.error(err);
 
+            // history
+
+            get_history(id, function(err, res) {
+                if(err) return console.error(err);
+
+                function updateHistory(index) {
+                    if(index < res.ids.length) {
+                        get_post(res.ids[index], function(err, post) {
+                            if(err) return console.error(err);
+                            
+                            new node($('#history'), post, true);
+                            
+                            updateHistory(index + 1);
+                        });
+                    }
+                }
+
+                updateHistory(0);
+            });
+
+            // tree
+
             var container = $('#tree-container');
-            var top = rootNode = new node(container, {id:-1, content:''});
+
+            var top = rootNode = new node(container, {id:-1, content:'(Current)'});
             top.add_as_branch(result);
 
             get_children(result.id, function(err, children) {
@@ -204,6 +231,7 @@ var treejs = (function () {
     var reset = function() {
         nodes = {};
         rootNode.container.empty();
+        $('#history').empty();
         draw_lines();
     };
 
@@ -267,6 +295,24 @@ var treejs = (function () {
     var get_post = function(id, res) {
         $.ajax ({
             url: '/posts/getPost',
+            type: 'POST',
+            data: JSON.stringify({
+                id: id
+            }),
+            dataType: 'json',
+            contentType: 'json',
+            success: function(result) {
+                res(null, result);
+            },
+            error: function(xhr, status, err) {
+                res(err);
+            }
+        });
+    };
+
+    var get_history = function(id, res) {
+        $.ajax ({
+            url: '/posts/getHistory',
             type: 'POST',
             data: JSON.stringify({
                 id: id

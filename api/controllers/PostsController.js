@@ -40,6 +40,21 @@ module.exports = {
         });
     },
 
+    //  Returns the history of from this node
+    //  Current post is last element of result.ids
+    // 
+    // req.params.id: id of starting point
+    // req.params.maxPosts: maximum posts to send back (unimplemented)
+    //
+    // result.ids: ids
+    // result.maxReached: is true if maxPosts was reached (unimplemented)
+    getHistory: function(req, res) {
+        Posts.getHistory({id: req.param('id'), maxPosts: req.param('maxPosts')}, function(err, result) {
+            if(err) return res.negotiate(err);
+            return res.json(result);
+        });
+    },
+
     //  no need for GET, since everything is dynamically updated with AJAX 
     //  anyway, and CRUD is implemented by default.
 
