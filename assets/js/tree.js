@@ -35,7 +35,7 @@ var treejs = (function () {
             current_node = _self.terminator(index).id;
             focused = newChain;
 
-            draw_lines();
+            // draw_lines();
         });
     };
 
@@ -73,9 +73,16 @@ var treejs = (function () {
         this.branch_ui.hide();
         this.domelement.on('mouseenter', function() {
             _self.branch_ui.show();
+            draw_lines();
         });
         this.domelement.on('mouseleave', function() {
             _self.branch_ui.hide();
+            draw_lines();
+        });
+        this.domelement.on('dblclick', function() {
+            reset();
+            rootId = post.id;
+            first_node(rootId);
         });
 
         this.id = post.id;
@@ -105,11 +112,6 @@ var treejs = (function () {
     node.prototype.add_as_branch = function(post) {
         if(this.child == null || !this.child.isBox) this.branch();
         this.child.add_as_branch(post);
-    };
-
-    node.prototype.update = function() {
-
-        if(this.child) this.child.update();
     };
 
     var old_push_ui = [];
@@ -156,6 +158,7 @@ var treejs = (function () {
 
     // build tree
     var rootId = 100;
+    var rootNode = null;
     var founder = false;
 
     var first_node = function(id) {
@@ -163,7 +166,7 @@ var treejs = (function () {
             if(err) return console.error(err);
 
             var container = $('#tree-container');
-            var top = new node(container, {id:-1, content:''});
+            var top = rootNode = new node(container, {id:-1, content:''});
             top.add_as_branch(result);
 
             get_children(result.id, function(err, children) {
@@ -196,6 +199,12 @@ var treejs = (function () {
                 }, this);
             });
         });
+    };
+
+    var reset = function() {
+        nodes = {};
+        rootNode.container.empty();
+        draw_lines();
     };
 
     var leaves = [];
@@ -307,6 +316,7 @@ var treejs = (function () {
     var ctx = c.getContext('2d');
 
     var draw_lines = function() {
+        resize_canvas();
         ctx.clearRect(0,0,c.width, c.height);
 
         Object.keys(nodes).forEach(function(key) {
@@ -328,6 +338,8 @@ var treejs = (function () {
             }
         });
     };
+
+    console.log(1);
 
     return {
         pull: pull,
