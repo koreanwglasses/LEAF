@@ -35,14 +35,17 @@ module.exports.routes = {
     '/': {
         view: 'index'
     },
-    '/register':{
+    '/register': {
         view: 'register'
     },
     '/login': {
         view: 'login'
     },
-    '/post':{
+    '/post': {
         view: 'post'
+    },
+    '/help': {
+        view: 'help'
     }
 
     /***************************************************************************
