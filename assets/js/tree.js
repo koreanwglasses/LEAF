@@ -1,4 +1,4 @@
-;
+
 var treejs = (function () {
     var nodes = {};
 
@@ -6,7 +6,7 @@ var treejs = (function () {
         this.isBox = true;
 
         this.container = container;
-        this.container.append('<div class="node"></div>');
+        this.container.append('<div class="box"></div>');
         this.domelement = this.container.children().last();
 
         this.child_container = [];
@@ -34,6 +34,8 @@ var treejs = (function () {
             push_ui(newChain);     
             current_node = _self.terminator(index).id;
             focused = newChain;
+
+            draw_lines();
         });
     };
 
@@ -47,17 +49,40 @@ var treejs = (function () {
 
     var node = function(container, post) {
         this.isNode = true;
+        var _self = this;
 
         nodes[post.id] = this;
 
         this.container = container;
 
-        this.container.append('<div class="node"></div>');
-        this.domelement = this.container.children().last();
+        this.container.append('<div class="box"></div>');
+        this.outer = this.container.children().last();
+        this.outer.append('<div class="node"></div>');
+        this.domelement = this.outer.children().last();
         this.domelement.text(post.content + ' ');
 
+        this.domelement.append('<a> →</a>');
+        this.branch_ui = this.domelement.children().last();
+        this.branch_ui.on('click', function() {
+            push_branch(post.id, 'New Branch', function(err, result) {
+                if(err) return console.error(err);
+
+                _self.add_as_branch(result);
+            });
+        });
+        this.branch_ui.hide();
+        this.domelement.on('mouseenter', function() {
+            _self.branch_ui.show();
+        });
+        this.domelement.on('mouseleave', function() {
+            _self.branch_ui.hide();
+        });
+
         this.id = post.id;
+        this.post = post;
         this.child = null;
+
+        draw_lines();
     };
 
     node.prototype.add_child = function(post) {
@@ -65,12 +90,26 @@ var treejs = (function () {
     };
 
     node.prototype.branch = function() {
-        this.child = new box(this.container);
+        if(this.child && this.child.isNode) {
+            var tmp = this.child;
+
+            this.child = new box(this.container);
+
+            this.child.add_as_branch(tmp.post);
+            
+        } else {
+            this.child = new box(this.container);
+        }
     };
 
     node.prototype.add_as_branch = function(post) {
         if(this.child == null || !this.child.isBox) this.branch();
         this.child.add_as_branch(post);
+    };
+
+    node.prototype.update = function() {
+
+        if(this.child) this.child.update();
     };
 
     var old_push_ui = [];
@@ -195,6 +234,27 @@ var treejs = (function () {
         });
     };
 
+    var push_branch = function(id, content, res) {
+        $.ajax ({
+            url: '/posts/branch',
+            type: 'POST',
+            data: JSON.stringify({
+                id: id,
+                post: {
+                    content: content
+                }
+            }),
+            dataType: 'json',
+            contentType: 'json',
+            success: function(result) {
+                if(res) res(null, result);
+            },
+            error: function(xhr, status, err) {
+                if (res) res(err);
+            }
+        });
+    };
+
     var get_post = function(id, res) {
         $.ajax ({
             url: '/posts/getPost',
@@ -235,7 +295,42 @@ var treejs = (function () {
 
     setInterval(pull, 1000);
 
+    var resize_canvas = function() {
+        $('#tree-canvas').attr('width', $(window).width());
+        $('#tree-canvas').attr('height', $(window).height());
+    };
+    resize_canvas();
+
+    $(window).on('resize', resize_canvas);
+
+    var c = document.getElementById('tree-canvas');
+    var ctx = c.getContext('2d');
+
+    var draw_lines = function() {
+        ctx.clearRect(0,0,c.width, c.height);
+
+        Object.keys(nodes).forEach(function(key) {
+            if(nodes[nodes[key].post.parent] !== undefined) {
+                var r2 = nodes[key].domelement[0].getBoundingClientRect();
+                var r1 = nodes[nodes[key].post.parent].domelement[0].getBoundingClientRect();
+
+                var x1 = 0.5 * (r1.left + r1.right) + window.scrollX;
+                var y1 = 0.5 * (r1.top + r1.bottom) + window.scrollY;
+
+                var x2 = 0.5 * (r2.left + r2.right) + window.scrollX;
+                var y2 = 0.5 * (r2.top + r2.bottom) + window.scrollY;
+
+                ctx.beginPath();
+                ctx.moveTo(x1,y1);
+                ctx.lineTo(x2,y2);
+                ctx.strokeStyle = '#004400';
+                ctx.stroke();
+            }
+        });
+    };
+
     return {
-        pull: pull
+        pull: pull,
+        draw_lines: draw_lines
     };
 })();
