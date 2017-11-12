@@ -10,7 +10,7 @@ module.exports = {
     getPost: function(req, res) {
         Posts.find({id: req.param('id')}, function(err, result) {
             if(err) return res.negiotiate(err);
-            return res.json(result);
+            return res.json(result[0]);
         });
     },
 

@@ -64,8 +64,8 @@ module.exports = {
             if(err) return cb(err);
 
             if(options.depth >= options.maxPosts) return cb(null, {ids: [options.id], isLeaf: false, isBranch: false, maxReached: true});
-            if(children.length == 0) return cb(null, {ids: [options.id], isLeaf: true, isBranch: false, maxReached: true});
-            if(children.length > 1) return cb(null, {ids: [options.id], isLeaf: false, isBranch: true, maxReached: true});
+            if(children.length == 0) return cb(null, {ids: [options.id], isLeaf: true, isBranch: false, maxReached: false});
+            if(children.length > 1) return cb(null, {ids: [options.id], isLeaf: false, isBranch: true, maxReached: false});
 
             Links.getChain({id: children[0], maxPosts: options.maxPosts, depth: options.depth + 1}, function(err, result) {
                 var chain = [options.id]; 

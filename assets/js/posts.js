@@ -1,29 +1,47 @@
 function getPost(div, id){
-  $.ajax ({
-    url: '/posts/find',
-    type: "POST",
-    data: {
-      id: id
-    },
-    dataType: "application/json"
-  })
-
-  .done(function(result) {
-    div.append(result.content)
-  });
+    $.ajax ({
+        url: '/posts/getPost',
+        type: 'POST',
+        data: JSON.stringify({
+            id: id
+        }),
+        dataType: 'json',
+        contentType: 'json',
+        success: function(result) {
+            div.text(result.content);
+        }
+    });
 }
 
-function getChain(div, id){
-  $.ajax({
-    url: '/posts/getChain',
-    type: "POST",
-    data: {
-      id: id
-    },
-    dataType: "application/json"
-  })
-  .done(function(result) {
-    
-    result.ids
-  });
+function getChain(){
+    var div = $('#chain');
+    div.empty();
+    var id = $('#postid').val();
+    $.ajax({
+        url: '/posts/getChain',
+        type: 'POST',
+        data: JSON.stringify({
+            id: id
+        }),
+        dataType: 'json',
+        contentType: 'json',
+        success: function(result) {
+            result.ids.forEach(function(element) {
+                div.append('<div></div>');
+                getPost(div.children().last(), element);
+            });
+            if(result.isBranch) {
+                div.append('<div>(Chain branches here)</div>');
+            }
+            if(result.isLeaf) {
+                div.append('<div>(Chain ends here)</div>');
+            }
+            if(result.maxReached) {
+                div.append('<div>(Chain continues)</div>');
+            }
+        },
+        error: function(xhr, status, err) {
+            console.log(err);
+        }
+    });
 }
