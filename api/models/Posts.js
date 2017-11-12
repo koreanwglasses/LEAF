@@ -63,7 +63,7 @@ module.exports = {
             post.parent = -1;
             Posts.create(post).exec(function(err, newPost) {
                 if(err) return cb(err);
-                return newPost;
+                return cb(newPost);
             });
         } else {
             Links.getLowest({id: options.id}, function(err, lowest) {

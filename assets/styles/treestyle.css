@@ -1,0 +1,26 @@
+#tree-container {
+    text-align: center;
+
+    margin: 0 auto;
+}
+
+#tree-container .node {
+    display: block;    
+ 
+    border-style: solid;
+    margin: 5px;
+}
+
+#tree-container .chain {
+    min-width: 100px;
+
+    display: inline-block;
+    vertical-align: top;
+
+    /* border-style: solid;
+    margin: 2px;  */
+}
+
+#tree-container .chain.focus {
+    min-width: 200px;
+}

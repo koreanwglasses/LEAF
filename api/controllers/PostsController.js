@@ -15,6 +15,13 @@ module.exports = {
         });
     },
 
+    getChildren: function(req, res) {
+        Links.getChildren({id: req.param('id')}, function(err, result) {
+            if(err) return res.negotiate(err);
+            return res.json(result);
+        });
+    },
+
     // Gets the chain down to a leaf or branch. Does not return past posts.
     // Current post is the first element of result.ids
     //
