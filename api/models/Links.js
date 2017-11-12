@@ -58,7 +58,7 @@ module.exports = {
     // result.isBranch: is true if the last node is a branch/
     // result.maxReached: is true if maxPosts was reached
     getChain: function(options, cb) {
-        if(options.maxPosts === undefined) options.maxPosts = 5;
+        if(options.maxPosts === undefined) options.maxPosts = 50;
         if(options.depth === undefined) options.depth = 0;
 
         Links.getChildren({id: options.id}, function(err, children) {
