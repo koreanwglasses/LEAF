@@ -13,9 +13,10 @@ function getPost(div, id){
     });
 }
 
+var posts = {lastPostId:1};
+
 function getChain(){
     var div = $('#chain');
-    div.empty();
     var id = $('#postid').val();
     $.ajax({
         url: '/posts/getChain',
@@ -26,10 +27,11 @@ function getChain(){
         dataType: 'json',
         contentType: 'json',
         success: function(result) {
-            result.ids.forEach(function(element) {
-                div.append('<div></div>');
-                getPost(div.children().last(), element);
-            });
+            for(var i=1;i<result.ids.length;i++){
+              div.append('<div></div>');
+              getPost(div.children().last(), element);
+            }
+            posts.lastPostId = result.ids[result.ids.length-1];
             if(result.isBranch) {
                 div.append('<div>(Chain branches to ' + result.next.join(' ') + ')</div>');
             }
