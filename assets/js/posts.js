@@ -13,11 +13,11 @@ function getPost(div, id){
     });
 }
 
-var posts = {lastPostId:1};
+var posts = {lastPostId:8};
 
 function getChain(){
     var div = $('#chain');
-    var id = $('#postid').val();
+    var id = posts.lastPostId;
     $.ajax({
         url: '/posts/getChain',
         type: 'POST',
@@ -28,19 +28,19 @@ function getChain(){
         contentType: 'json',
         success: function(result) {
             for(var i=1;i<result.ids.length;i++){
-              div.append('<div></div>');
-              getPost(div.children().last(), element);
+                div.append('<div></div>');
+                getPost(div.children().last(), result.ids[i]);
             }
             posts.lastPostId = result.ids[result.ids.length-1];
             if(result.isBranch) {
                 div.append('<div>(Chain branches to ' + result.next.join(' ') + ')</div>');
             }
-            if(result.isLeaf) {
-                div.append('<div>(Chain ends here)</div>');
-            }
-            if(result.maxReached) {
-                div.append('<div>(Chain continues with ' + result.next[0] + ')</div>');
-            }
+            // if(result.isLeaf) {
+            //     div.append('<div>(Chain ends here)</div>');
+            // }
+            // if(result.maxReached) {
+            //     div.append('<div>(Chain continues with ' + result.next[0] + ')</div>');
+            // }
         },
         error: function(xhr, status, err) {
             console.log(err);
