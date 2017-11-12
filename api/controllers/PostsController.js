@@ -7,16 +7,28 @@
 
 module.exports = {
 
+    //  See Posts model for attributes
     getPost: function(req, res) {
         Posts.find({id: req.param('id')}, function(err, result) {
-            if(err) return res.negiotiate(err);
+            if(err) return res.negotiate(err);
             return res.json(result[0]);
         });
     },
 
+    // Gets the chain down to a leaf or branch. Does not return past posts.
+    // Current post is the first element of result.ids
+    //
+    // req.params.id: id of starting point
+    // req.params.maxPosts: maximum posts to send back
+    //
+    // result.ids: ids in order
+    // result.next: posts that could follow this post
+    // result.isLeaf: is true if the last node is a leaf.
+    // result.isBranch: is true if the last node is a branch/
+    // result.maxReached: is true if maxPosts was reached
     getChain: function(req, res) {
-        Posts.getChain({id: req.param('id')}, function(err, result) {
-            if(err) return res.negiotiate(err);
+        Posts.getChain({id: req.param('id'), maxPosts: req.param('maxPosts')}, function(err, result) {
+            if(err) return res.negotiate(err);
             return res.json(result);
         });
     },
