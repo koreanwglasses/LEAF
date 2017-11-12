@@ -1,5 +1,8 @@
-<input type="text" id="postid" value=1>
-
+Start from: <input type="text" id="postid" value=1><input type="button" value="Ok" onclick="posts.firstPostId=posts.lastPostId=$('#postid').val();clearChain();"><br>
 <input type="button" value="Refresh" onclick="getChain()">
+<input type="button" value="Clear" onclick="clearChain()"><br>
 
 <div id="chain"> </div>
+
+<input type="text" id="input_text">
+<input type="button" value="Send" onclick="push()">
