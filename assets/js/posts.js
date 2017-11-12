@@ -31,13 +31,13 @@ function getChain(){
                 getPost(div.children().last(), element);
             });
             if(result.isBranch) {
-                div.append('<div>(Chain branches here)</div>');
+                div.append('<div>(Chain branches to ' + result.next.join(' ') + ')</div>');
             }
             if(result.isLeaf) {
                 div.append('<div>(Chain ends here)</div>');
             }
             if(result.maxReached) {
-                div.append('<div>(Chain continues)</div>');
+                div.append('<div>(Chain continues with ' + result.next[0] + ')</div>');
             }
         },
         error: function(xhr, status, err) {

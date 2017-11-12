@@ -53,6 +53,7 @@ module.exports = {
     // options.depth: (used internally)
     //
     // result.ids: ids in order
+    // result.next: posts that could follow this post
     // result.isLeaf: is true if the last node is a leaf.
     // result.isBranch: is true if the last node is a branch/
     // result.maxReached: is true if maxPosts was reached
@@ -63,14 +64,14 @@ module.exports = {
         Links.getChildren({id: options.id}, function(err, children) {
             if(err) return cb(err);
 
-            if(options.depth >= options.maxPosts) return cb(null, {ids: [options.id], isLeaf: false, isBranch: false, maxReached: true});
-            if(children.length == 0) return cb(null, {ids: [options.id], isLeaf: true, isBranch: false, maxReached: false});
-            if(children.length > 1) return cb(null, {ids: [options.id], isLeaf: false, isBranch: true, maxReached: false});
+            if(options.depth >= options.maxPosts) return cb(null, {ids: [options.id], next: children, isLeaf: false, isBranch: false, maxReached: true});
+            if(children.length == 0) return cb(null, {ids: [options.id], next: children, isLeaf: true, isBranch: false, maxReached: false});
+            if(children.length > 1) return cb(null, {ids: [options.id], next: children, isLeaf: false, isBranch: true, maxReached: false});
 
             Links.getChain({id: children[0], maxPosts: options.maxPosts, depth: options.depth + 1}, function(err, result) {
                 var chain = [options.id]; 
                 [].push.apply(chain, result.ids);
-                return cb(err, {ids: chain, isLeaf: result.isLeaf, isBranch: result.isBranch, maxReached: result.maxReached});
+                return cb(err, {ids: chain, next: result.next, isLeaf: result.isLeaf, isBranch: result.isBranch, maxReached: result.maxReached});
             });
         });
     }
