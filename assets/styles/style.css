@@ -12,6 +12,16 @@ h1 {
     font-variant: small-caps;
     margin-left: 50px;
 }
+h1 a:link {
+    text-decoration: none;
+    text-decoration-color: black;
+    color:black;
+}
+h1 a:visited {
+    text-decoration: none;
+    text-decoration-color: black;
+    color:black;
+}
 header {
     list-style: none;
     text-align: justify;
@@ -30,6 +40,11 @@ header {
 }
 .navBar:link {
     text-decoration: none;
+    color:black;
+}
+.navBar:visited {
+    text-decoration: none;
+    color:black;
 }
 footer {
 }

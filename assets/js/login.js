@@ -5,7 +5,7 @@ function login(user, pass){
     username: user,
     password: pass
   },
-  dataType: 'applications/json'
+  dataType: 'json'
 
   });
 }
